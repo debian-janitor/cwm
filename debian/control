@@ -3,7 +3,7 @@ Section: x11
 Priority: optional
 Maintainer: James McDonald <james@jamesmcdonald.com>
 Build-Depends: bison,
-               debhelper (>= 9.0.0),
+               debhelper (>= 9),
                libx11-dev,
                libxft-dev,
                libxinerama-dev,
