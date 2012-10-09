@@ -1,0 +1,21 @@
+Add backslash-escaping to bare - used as minus in man page.
+--- a/cwmrc.5
++++ b/cwmrc.5
+@@ -228,7 +228,7 @@
+ # Any entry here is shown in the application menu
+ command firefox		firefox
+ command xmms		xmms
+-command top		"xterm -e top"
++command top		"xterm \-e top"
+ 
+ # Autogroup definitions
+ autogroup 3 "aterm,XTerm"
+@@ -242,7 +242,7 @@
+ 
+ # Keybindings
+ bind CM-r	label
+-bind CS-Return	"xterm -e top"
++bind CS-Return	"xterm \-e top"
+ bind 4-o	unmap
+ bind M-1	grouponly1
+ bind M-2	grouponly2
