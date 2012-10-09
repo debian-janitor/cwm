@@ -19,9 +19,7 @@ Provides: x-window-manager
 Description: lightweight and efficient window manager for X11
  cwm is a minimalist stacking window manager ported from OpenBSD.
  Originally inspired by evilwm, it was rewritten from scratch due
- to limitations in the evilwm codebase.  The from-scratch rewrite borrowed
- some code from 9wm, however that code has since been removed or
- rewritten.
+ to limitations in the evilwm codebase.
  .
  cwm contains many features that concentrate on the efficiency and
  transparency of window management. cwm also aims to maintain the simplest
@@ -31,7 +29,7 @@ Description: lightweight and efficient window manager for X11
  can be simulated by the ability to group windows, and to show and hide
  these groups.
  .
- cwm is very configurable via the simple, clearly documented .cwmrc file.
+ cwm is very configurable via a simple, clearly documented .cwmrc file.
  .
  If you are looking for simple menus and pretty icons, cwm is probably
  not going to be your cup of tea. If you don't mind a little learning
