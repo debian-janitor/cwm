@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=cwm
+Comment=Lightweight window manager for X11
+Exec=cwm
+Terminal=False
+TryExec=cwm
+Type=Application
+
