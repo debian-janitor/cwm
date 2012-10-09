@@ -15,6 +15,7 @@ Homepage: https://github.com/chneukirchen/cwm
 Package: cwm
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
+Provides: x-window-manager
 Description: lightweight and efficient window manager for X11
  cwm is a minimalist stacking window manager ported from OpenBSD.
  Originally inspired by evilwm, it was rewritten from scratch due
