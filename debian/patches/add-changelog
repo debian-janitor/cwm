@@ -1,0 +1,7 @@
+Add a changelog copied from the README.
+--- /dev/null
++++ b/changelog
+@@ -0,0 +1,3 @@
++2012-05-02: First public release 5.1 of portable cwm.
++
++--Christian Neukirchen <chneukirchen@gmail.com>
