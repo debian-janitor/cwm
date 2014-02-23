@@ -25,9 +25,9 @@ Description: lightweight and efficient window manager for X11
  transparency of window management. cwm also aims to maintain the simplest
  and most pleasant aesthetic. It provides minimal decoration and screen
  clutter, instead having powerful controls to manage windows, launch
- programs etc via key and mouse bindings. A "virtual desktop" 
- can be simulated by the ability to group windows, and to show and hide
- these groups.
+ programs etc. via key and mouse bindings. A "virtual desktop" can be
+ simulated by the ability to group windows, and to show and hide these
+ groups.
  .
  cwm is very configurable via a simple, clearly documented .cwmrc file.
  .
