@@ -5,7 +5,7 @@
 	dh $@ 
 
 override_dh_auto_build:
-	$(MAKE) CFLAGS="-fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -Wall -O2 -g"
+	$(MAKE) CFLAGS="`dpkg-buildflags --get CFLAGS`"
 
 override_dh_auto_install:
 	$(MAKE) DESTDIR=$$(pwd)/debian/cwm PREFIX=/usr install
