@@ -1,25 +1,25 @@
 Add backslash-escaping to bare - used as minus in man page.
 --- a/cwmrc.5
 +++ b/cwmrc.5
-@@ -57,7 +57,7 @@
- Cause the creation of a keybinding, or replacement of a default
- keybinding.
+@@ -67,7 +67,7 @@
+ Cause the creation of a key binding, or replacement of a default
+ key binding.
  The modifier keys come first, followed by a
 -.Sq - .
 +.Sq \- .
  .Pp
  The following modifiers are recognised:
  .Pp
-@@ -73,7 +73,7 @@
+@@ -83,7 +83,7 @@
  .El
  .Pp
  The
 -.Sq -
 +.Sq \-
- should be followed by either a keysym name, taken from
- .Pa /usr/X11R6/include/X11/keysymdef.h ,
- or a numerical keycode value enclosed in
-@@ -167,7 +167,7 @@
+ should be followed by a keysym name, taken from
+ .Pa /usr/X11R6/include/X11/keysymdef.h .
+ The
+@@ -181,7 +181,7 @@
  Cause the creation of a mouse binding, or replacement of a default
  mouse binding.
  The modifier keys come first, followed by a
@@ -28,7 +28,7 @@ Add backslash-escaping to bare - used as minus in man page.
  .Pp
  The following modifiers are recognised:
  .Pp
-@@ -183,7 +183,7 @@
+@@ -197,7 +197,7 @@
  .El
  .Pp
  The
@@ -37,7 +37,7 @@ Add backslash-escaping to bare - used as minus in man page.
  should be followed by number:
  .Pp
  .Bl -tag -width Ds -offset indent -compact
-@@ -220,15 +220,15 @@
+@@ -238,15 +238,15 @@
  .Sh EXAMPLE CONFIGURATION
  .Bd -literal
  # Set default Xft(3) font
@@ -56,13 +56,17 @@ Add backslash-escaping to bare - used as minus in man page.
  
  # Autogroup definitions
  autogroup 3 "aterm,XTerm"
-@@ -241,19 +241,19 @@
+@@ -259,23 +259,23 @@
  ignore xclock
  
- # Keybindings
+ # Key bindings
 -bind CM-r	label
 -bind CS-Return	"xterm -e top"
 -bind 4-o	unmap
+-bind CM-equal	unmap
+-bind CMS-equal	unmap
+-bind C4-equal	vmaximize
+-bind C4S-equal	hmaximize
 -bind M-1	grouponly1
 -bind M-2	grouponly2
 -bind M-3	grouponly3
@@ -72,6 +76,10 @@ Add backslash-escaping to bare - used as minus in man page.
 +bind CM\-r	label
 +bind CS\-Return	"xterm \-e top"
 +bind 4\-o	unmap
++bind CM\-equal	unmap
++bind CMS\-equal	unmap
++bind C4\-equal	vmaximize
++bind C4S\-equal	hmaximize
 +bind M\-1	grouponly1
 +bind M\-2	grouponly2
 +bind M\-3	grouponly3
@@ -79,7 +87,7 @@ Add backslash-escaping to bare - used as minus in man page.
 +bind MS\-2	movetogroup2
 +bind MS\-3	movetogroup3
  
- # Mousebindings
+ # Mouse bindings
 -mousebind M-2	window_lower
 -mousebind M-3	window_resize
 +mousebind M\-2	window_lower
