@@ -6,7 +6,7 @@
 
 override_dh_auto_build:
 	sed -ne '/^\[0\]/d' -e '/^ChangeLog:/,$$p' README > changelog
-	$(MAKE) CFLAGS="`dpkg-buildflags --get CFLAGS`"
+	CFLAGS="`dpkg-buildflags --get CFLAGS`" $(MAKE)
 
 override_dh_auto_install:
 	dh_auto_install -- PREFIX=/usr
