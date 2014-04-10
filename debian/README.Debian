@@ -1,0 +1,7 @@
+cwm for Debian
+--------------
+
+I have renamed the executable from 'cwm' to 'openbsd-cwm' to avoid a conflict.
+The man page is also renamed to openbsd-cwm.1.
+
+ -- James McDonald <james@jamesmcdonald.com>
