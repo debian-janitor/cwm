@@ -1,3 +1,4 @@
+Change Makefile to add to CFLAGS instead of replacing them.
 --- a/Makefile
 +++ b/Makefile
 @@ -16,7 +16,7 @@
