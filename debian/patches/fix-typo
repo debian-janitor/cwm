@@ -1,7 +1,7 @@
 Fix a typo "cant" to "can't" in client.c
 --- a/client.c
 +++ b/client.c
-@@ -608,7 +608,7 @@
+@@ -623,7 +623,7 @@
  
  	oldcc = client_current();
  
