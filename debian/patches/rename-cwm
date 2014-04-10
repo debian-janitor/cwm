@@ -1,3 +1,4 @@
+Rename cwm and cwmrc.1 to start with 'openbsd-' to avoid conflict.
 --- a/Makefile
 +++ b/Makefile
 @@ -1,7 +1,7 @@
