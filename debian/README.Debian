@@ -4,4 +4,9 @@ cwm for Debian
 I have renamed the executable from 'cwm' to 'openbsd-cwm' to avoid a conflict.
 The man page is also renamed to openbsd-cwm.1.
 
+The default 'lock' program bound to CM-Delete has been changed from 'xlock'
+to 'xscreensaver-command -lock'. In order for this to work, you will have to
+start xscreensaver, for example in your .xsession file. You can change this
+setting in your configuration - see cwmrc(5).
+
  -- James McDonald <james@jamesmcdonald.com>
