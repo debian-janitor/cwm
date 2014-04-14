@@ -21,3 +21,70 @@ Rename cwm and cwmrc.1 to start with 'openbsd-' to avoid conflict.
  	install -m 644 cwmrc.5 ${DESTDIR}${MANPREFIX}/man5
  
  release:
+--- a/cwm.1
++++ b/cwm.1
+@@ -15,14 +15,14 @@
+ .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ .\"
+ .Dd $Mdocdate: December 16 2013 $
+-.Dt CWM 1
++.Dt OPENBSD-CWM 1
+ .Os
+ .Sh NAME
+-.Nm cwm
++.Nm openbsd-cwm
+ .Nd a lightweight and efficient window manager for X11
+ .Sh SYNOPSIS
+ .\" For a program:  program [-abc] file ...
+-.Nm cwm
++.Nm openbsd-cwm
+ .Op Fl c Ar file
+ .Op Fl d Ar display
+ .Sh DESCRIPTION
+--- a/cwmrc.5
++++ b/cwmrc.5
+@@ -22,7 +22,7 @@
+ .Nd calm window manager configuration file
+ .Sh DESCRIPTION
+ This manual page describes the
+-.Xr cwm 1
++.Xr openbsd-cwm 1
+ configuration file.
+ .Pp
+ The current line can be extended over multiple lines using a backslash
+@@ -232,7 +232,7 @@
+ Toggle sticky group mode.
+ The default behavior for new windows is to not assign any group.
+ By enabling sticky group mode,
+-.Xr cwm 1
++.Xr openbsd-cwm 1
+ will assign new windows to the currently selected group.
+ .El
+ .Sh EXAMPLE CONFIGURATION
+@@ -281,10 +281,10 @@
+ .Bl -tag -width 18n -compact
+ .It restart
+ Restart the running
+-.Xr cwm 1 .
++.Xr openbsd-cwm 1 .
+ .It quit
+ Quit
+-.Xr cwm 1 .
++.Xr openbsd-cwm 1 .
+ .It terminal
+ Spawn a new terminal.
+ .It lock
+@@ -481,11 +481,11 @@
+ .Bl -tag -width "~/.cwmrcXXX" -compact
+ .It Pa ~/.cwmrc
+ default
+-.Xr cwm 1
++.Xr openbsd-cwm 1
+ configuration file
+ .El
+ .Sh SEE ALSO
+-.Xr cwm 1
++.Xr openbsd-cwm 1
+ .Sh HISTORY
+ The
+ .Nm
