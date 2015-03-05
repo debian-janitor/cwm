@@ -8,7 +8,7 @@ Rename cwm and cwmrc.1 to start with 'openbsd-' to avoid conflict.
 -PROG=		cwm
 +PROG=		openbsd-cwm
  
- PREFIX=         /usr/local
+ PREFIX?=	/usr/local
  
 @@ -38,8 +38,8 @@
  
@@ -26,7 +26,7 @@ Rename cwm and cwmrc.1 to start with 'openbsd-' to avoid conflict.
 @@ -15,14 +15,14 @@
  .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  .\"
- .Dd $Mdocdate: December 16 2013 $
+ .Dd $Mdocdate$
 -.Dt CWM 1
 +.Dt OPENBSD-CWM 1
  .Os
@@ -74,7 +74,7 @@ Rename cwm and cwmrc.1 to start with 'openbsd-' to avoid conflict.
  .It terminal
  Spawn a new terminal.
  .It lock
-@@ -481,11 +481,11 @@
+@@ -483,11 +483,11 @@
  .Bl -tag -width "~/.cwmrcXXX" -compact
  .It Pa ~/.cwmrc
  default
