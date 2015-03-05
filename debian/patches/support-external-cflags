@@ -5,7 +5,7 @@ Change Makefile to add to CFLAGS instead of replacing them.
  
  CPPFLAGS+=	`pkg-config --cflags fontconfig x11 xft xinerama xrandr`
  
--CFLAGS=		-Wall -O2 -g -D_GNU_SOURCE
+-CFLAGS?=	-Wall -O2 -g -D_GNU_SOURCE
 +CFLAGS+=	-Wall -O2 -g -D_GNU_SOURCE
  
  LDFLAGS+=	`pkg-config --libs fontconfig x11 xft xinerama xrandr`
