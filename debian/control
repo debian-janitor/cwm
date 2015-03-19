@@ -9,7 +9,7 @@ Build-Depends: bison,
                libxinerama-dev,
                libxrandr-dev,
                pkg-config
-Standards-Version: 3.9.5
+Standards-Version: 3.9.6
 Homepage: https://github.com/chneukirchen/cwm
 
 Package: cwm
