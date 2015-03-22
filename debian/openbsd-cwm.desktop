@@ -1,9 +1,8 @@
 [Desktop Entry]
-Encoding=UTF-8
 Name=openbsd-cwm
 Comment=Lightweight window manager for X11
 Exec=openbsd-cwm
 Terminal=False
 TryExec=openbsd-cwm
 Type=Application
-
+Keywords=wm;windowmanager;window;manager;cwm;
