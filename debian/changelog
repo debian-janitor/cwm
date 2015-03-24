@@ -1,6 +1,9 @@
 cwm (5.6-1) unstable; urgency=low
 
-  * Updated packaging for upstream 5.6.
+  * Updated packaging for 5.6
+  * Updated standards version to 3.9.6
+  * Removed typo patch for source typo removed upstream
+  * Updated openbsd-cwm.desktop to remove Encoding and add Keywords
 
  -- James McDonald <james@jamesmcdonald.com>  Thu, 05 Mar 2015 07:29:17 +0100
 
