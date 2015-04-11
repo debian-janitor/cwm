@@ -1,7 +1,7 @@
 cwm (5.6-1) experimental; urgency=low
 
   * Updated packaging for 5.6
-  * Updated standards version to 3.9.6
+  * Updated standards version to 3.9.6 (no changes needed)
   * Removed typo patch for source typo removed upstream
   * Updated openbsd-cwm.desktop to remove Encoding and add Keywords
 
