@@ -5,7 +5,7 @@ cwm (5.6-1) experimental; urgency=low
   * Removed typo patch for source typo removed upstream
   * Updated openbsd-cwm.desktop to remove Encoding and add Keywords
 
- -- James McDonald <james@jamesmcdonald.com>  Thu, 02 Apr 2015 18:12:25 +0200
+ -- James McDonald <james@jamesmcdonald.com>  Sat, 11 Apr 2015 12:07:25 +0200
 
 cwm (5.5-1) unstable; urgency=low
 
