@@ -2,3 +2,4 @@ fix-man-hyphens
 support-external-cflags
 rename-cwm
 change-default-binaries
+fix-host-name-max
