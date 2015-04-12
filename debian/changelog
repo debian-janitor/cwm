@@ -1,3 +1,10 @@
+cwm (5.6-3) experimental; urgency=low
+
+  * Fixed lookup from the 'exec' and 'wm' dialogs for filesystems such
+    as XFS which don't populate the d_type of struct dirent
+
+ -- James McDonald <james@jamesmcdonald.com>  Mon, 20 Apr 2015 15:38:05 +0200
+
 cwm (5.6-2) experimental; urgency=low
 
   * Added patch to avoid using HOST_NAME_MAX which allows building on
