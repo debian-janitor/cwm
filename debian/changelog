@@ -3,7 +3,7 @@ cwm (5.6-2) experimental; urgency=low
   * Added patch to avoid using HOST_NAME_MAX which allows building on
     kFreeBSD (Closes: #782418)
 
- -- James McDonald <james@jamesmcdonald.com>  Sun, 12 Apr 2015 09:03:17 +0200
+ -- James McDonald <james@jamesmcdonald.com>  Sat, 18 Apr 2015 12:17:39 +0200
 
 cwm (5.6-1) experimental; urgency=low
 
