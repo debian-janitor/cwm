@@ -4,7 +4,7 @@ Description: Add an additional stat() check if a d_type check fails for
  eg XFS.
 --- a/kbfunc.c
 +++ b/kbfunc.c
-@@ -246,6 +246,7 @@ kbfunc_exec(struct client_ctx *cc, union arg *arg)
+@@ -246,6 +246,7 @@
  	struct menu		*mi;
  	struct menu_q		 menuq;
  	int			 l, i, cmd = arg->i;
@@ -12,7 +12,7 @@ Description: Add an additional stat() check if a d_type check fails for
  
  	switch (cmd) {
  	case CWM_EXEC_PROGRAM:
-@@ -276,12 +277,16 @@ kbfunc_exec(struct client_ctx *cc, union arg *arg)
+@@ -276,12 +277,17 @@
  			continue;
  
  		while ((dp = readdir(dirp)) != NULL) {
@@ -25,7 +25,8 @@ Description: Add an additional stat() check if a d_type check fails for
 +			/* skip everything but regular files and symlinks */
 +			if (dp->d_type != DT_REG && dp->d_type != DT_LNK) {
 +				/* use an additional stat-based check in case d_type isn't supported */
-+				stat(tpath, &sb);
++				if(lstat(tpath, &sb) < 0)
++					continue;
 +				if (!S_ISREG(sb.st_mode) && !S_ISLNK(sb.st_mode))
 +					continue;
 +			}
