@@ -1,7 +1,8 @@
 From: James McDonald <james@jamesmcdonald.com>
-Description: Add an additional stat() check if a d_type check fails for
- kbfunc_exec lookups. The d_type check doesn't work on all filesystems,
- eg XFS.
+Description: Fix 'exec' lookups for filesystems which don't support d_type.
+ Lookups in kbfunc_exec fail on filesystems where the d_type field of
+ struct dirent is not populated, such as XFS. This patch adds an additional
+ test with lstat(2) if the initial test fails.
 --- a/kbfunc.c
 +++ b/kbfunc.c
 @@ -246,6 +246,7 @@
