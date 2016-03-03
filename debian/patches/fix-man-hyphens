@@ -37,8 +37,8 @@ Add backslash-escaping to bare - used as minus in man page.
  should be followed by number:
  .Pp
  .Bl -tag -width Ds -offset indent -compact
-@@ -238,15 +238,15 @@
- .Sh EXAMPLE CONFIGURATION
+@@ -449,15 +449,15 @@
+ .Sh EXAMPLES
  .Bd -literal
  # Set default Xft(3) font
 -fontname "sans-serif:pixelsize=14:bold"
@@ -56,7 +56,7 @@ Add backslash-escaping to bare - used as minus in man page.
  
  # Autogroup definitions
  autogroup 3 "aterm,XTerm"
-@@ -259,23 +259,23 @@
+@@ -470,23 +470,23 @@
  ignore xclock
  
  # Key bindings
@@ -93,5 +93,5 @@ Add backslash-escaping to bare - used as minus in man page.
 +mousebind M\-2	window_lower
 +mousebind M\-3	window_resize
  .Ed
- .Sh BIND COMMAND LIST
- .Bl -tag -width 18n -compact
+ .Sh SEE ALSO
+ .Xr cwm 1
