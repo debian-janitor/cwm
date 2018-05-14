@@ -1,7 +1,7 @@
 Change the default binaries to more closely fit Debian policy
 --- a/conf.c
 +++ b/conf.c
-@@ -293,8 +293,8 @@
+@@ -276,8 +276,8 @@
  	for (i = 0; i < nitems(color_binds); i++)
  		c->color[i] = xstrdup(color_binds[i]);
  
@@ -9,6 +9,6 @@ Change the default binaries to more closely fit Debian policy
 -	conf_cmd_add(c, "term", "xterm");
 +	conf_cmd_add(c, "lock", "xscreensaver-command -lock");
 +	conf_cmd_add(c, "term", "x-terminal-emulator");
+ 	conf_wm_add(c, "cwm", "cwm");
  
- 	(void)snprintf(c->known_hosts, sizeof(c->known_hosts), "%s/%s",
- 	    homedir, ".ssh/known_hosts");
+ 	c->font = xstrdup("sans-serif:pixelsize=14:bold");

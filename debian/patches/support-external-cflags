@@ -3,10 +3,10 @@ Change Makefile to add to CFLAGS instead of replacing them.
 +++ b/Makefile
 @@ -16,7 +16,7 @@
  
- CPPFLAGS+=	`pkg-config --cflags fontconfig x11 xft xrandr`
+ CPPFLAGS+=	`pkg-config --cflags x11 xft xrandr`
  
 -CFLAGS?=	-Wall -O2 -g -D_GNU_SOURCE
 +CFLAGS+=	-Wall -O2 -g -D_GNU_SOURCE
  
- LDFLAGS+=	`pkg-config --libs fontconfig x11 xft xrandr`
+ LDFLAGS+=	`pkg-config --libs x11 xft xrandr`
  

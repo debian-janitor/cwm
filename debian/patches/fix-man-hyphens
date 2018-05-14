@@ -35,7 +35,7 @@ Add backslash-escaping to bare - used as minus in man page.
  Unbind function bound to
  .Ar key .
  A special
-@@ -441,15 +441,15 @@
+@@ -463,15 +463,15 @@
  .Sh EXAMPLES
  .Bd -literal
  # Set default Xft(3) font
@@ -54,7 +54,7 @@ Add backslash-escaping to bare - used as minus in man page.
  
  # Autogroup definitions
  autogroup 3 "aterm,XTerm"
-@@ -462,19 +462,19 @@
+@@ -484,19 +484,19 @@
  ignore xclock
  
  # Key bindings

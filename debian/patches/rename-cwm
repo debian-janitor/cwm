@@ -38,9 +38,9 @@ Rename cwm and cwmrc.1 to start with 'openbsd-' to avoid conflict.
  .\" For a program:  program [-abc] file ...
 -.Nm cwm
 +.Nm openbsd-cwm
+ .Op Fl v
  .Op Fl c Ar file
  .Op Fl d Ar display
- .Sh DESCRIPTION
 --- a/cwmrc.5
 +++ b/cwmrc.5
 @@ -22,7 +22,7 @@
@@ -61,7 +61,7 @@ Rename cwm and cwmrc.1 to start with 'openbsd-' to avoid conflict.
  will assign new windows to the currently selected group.
  .Pp
  .It Ic unbind\-key Ar key
-@@ -250,10 +250,10 @@
+@@ -256,10 +256,10 @@
  .Bl -tag -width 23n -compact
  .It restart
  Restart the running
@@ -74,7 +74,7 @@ Rename cwm and cwmrc.1 to start with 'openbsd-' to avoid conflict.
  .It terminal
  Spawn a new terminal.
  .It lock
-@@ -435,7 +435,7 @@
+@@ -457,7 +457,7 @@
  .Bl -tag -width "~/.cwmrcXXX" -compact
  .It Pa ~/.cwmrc
  Default
@@ -83,7 +83,7 @@ Rename cwm and cwmrc.1 to start with 'openbsd-' to avoid conflict.
  configuration file.
  .El
  .Sh EXAMPLES
-@@ -481,7 +481,7 @@
+@@ -503,7 +503,7 @@
  bind-mouse M-3		window-resize
  .Ed
  .Sh SEE ALSO

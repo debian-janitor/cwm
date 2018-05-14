@@ -171,7 +171,7 @@ kbfunc_client_move_mb(void *ctx, struct cargs *cargs)
 	menu_windraw(sc, cc->win, "%4d, %-4d", cc->geom.x, cc->geom.y);
 
 	while (move) {
-		XWindowEvent(X_Dpy, cc->win, MOUSEMASK, &ev);
+		XMaskEvent(X_Dpy, MOUSEMASK, &ev);
 		switch (ev.type) {
 		case MotionNotify:
 			/* not more than 60 times / second */
@@ -259,7 +259,7 @@ kbfunc_client_resize_mb(void *ctx, struct cargs *cargs)
 
 	menu_windraw(sc, cc->win, "%4d x %-4d", cc->dim.w, cc->dim.h);
 	while (resize) {
-		XWindowEvent(X_Dpy, cc->win, MOUSEMASK, &ev);
+		XMaskEvent(X_Dpy, MOUSEMASK, &ev);
 		switch (ev.type) {
 		case MotionNotify:
 			/* not more than 60 times / second */
@@ -287,6 +287,42 @@ kbfunc_client_resize_mb(void *ctx, struct cargs *cargs)
 
 	/* Make sure the pointer stays within the window. */
 	client_ptr_inbound(cc, 0);
+}
+
+void
+kbfunc_client_snap(void *ctx, struct cargs *cargs)
+{
+	struct client_ctx	*cc = ctx;
+	struct screen_ctx	*sc = cc->sc;
+	struct geom		 area;
+	int			 flags;
+
+	area = screen_area(sc,
+	    cc->geom.x + cc->geom.w / 2,
+	    cc->geom.y + cc->geom.h / 2, CWM_GAP);
+
+	flags = cargs->flag;
+	while (flags) {
+		if (flags & CWM_UP) {
+			cc->geom.y = area.y;
+			flags &= ~CWM_UP;
+		}
+		if (flags & CWM_LEFT) {
+			cc->geom.x = area.x;
+			flags &= ~CWM_LEFT;
+		}
+		if (flags & CWM_RIGHT) {
+			cc->geom.x = area.x + area.w - cc->geom.w -
+			    (cc->bwidth * 2);
+			flags &= ~CWM_RIGHT;
+		}
+		if (flags & CWM_DOWN) {
+			cc->geom.y = area.y + area.h - cc->geom.h -
+			    (cc->bwidth * 2);
+			flags &= ~CWM_DOWN;
+		}
+	}
+	client_move(cc);
 }
 
 void
@@ -365,7 +401,14 @@ kbfunc_client_vtile(void *ctx, struct cargs *cargs)
 void
 kbfunc_client_cycle(void *ctx, struct cargs *cargs)
 {
-	client_cycle(ctx, cargs->flag);
+	struct screen_ctx	*sc = ctx;
+
+	/* For X apps that ignore/steal events. */
+	if (cargs->xev == CWM_XEV_KEY)
+		XGrabKeyboard(X_Dpy, sc->rootwin, True,
+		    GrabModeAsync, GrabModeAsync, CurrentTime);
+
+	client_cycle(sc, cargs->flag);
 }
 
 void
@@ -373,12 +416,12 @@ kbfunc_client_toggle_group(void *ctx, struct cargs *cargs)
 {
 	struct client_ctx	*cc = ctx;
 
-	/* For X apps that steal events. */
+	/* For X apps that ignore/steal events. */
 	if (cargs->xev == CWM_XEV_KEY)
 		XGrabKeyboard(X_Dpy, cc->win, True,
 		    GrabModeAsync, GrabModeAsync, CurrentTime);
 
-	group_toggle_membership_enter(cc);
+	group_toggle_membership(cc);
 }
 
 void
@@ -418,8 +461,11 @@ kbfunc_menu_client(void *ctx, struct cargs *cargs)
 	struct client_ctx	*cc, *old_cc;
 	struct menu		*mi;
 	struct menu_q		 menuq;
-	int			 m = (cargs->xev == CWM_XEV_BTN);
 	int			 all = (cargs->flag & CWM_MENU_WINDOW_ALL);
+	int			 mflags = 0;
+
+	if (cargs->xev == CWM_XEV_BTN)
+		mflags |= CWM_MENU_LIST;
 
 	old_cc = client_current();
 
@@ -432,15 +478,10 @@ kbfunc_menu_client(void *ctx, struct cargs *cargs)
 			menuq_add(&menuq, cc, NULL);
 	}
 
-	if ((mi = menu_filter(sc, &menuq,
-	    (m) ? NULL : "window", NULL,
-	    ((m) ? CWM_MENU_LIST : 0),
+	if ((mi = menu_filter(sc, &menuq, "window", NULL, mflags,
 	    search_match_client, search_print_client)) != NULL) {
 		cc = (struct client_ctx *)mi->ctx;
-		if (cc->flags & CLIENT_HIDDEN)
-			client_unhide(cc);
-		else
-			client_raise(cc);
+		client_show(cc);
 		if (old_cc)
 			client_ptrsave(old_cc);
 		client_ptrwarp(cc);
@@ -456,21 +497,21 @@ kbfunc_menu_cmd(void *ctx, struct cargs *cargs)
 	struct cmd_ctx		*cmd;
 	struct menu		*mi;
 	struct menu_q		 menuq;
-	int			 m = (cargs->xev == CWM_XEV_BTN);
+	int			 mflags = 0;
+
+	if (cargs->xev == CWM_XEV_BTN)
+		mflags |= CWM_MENU_LIST;
 
 	TAILQ_INIT(&menuq);
 	TAILQ_FOREACH(cmd, &Conf.cmdq, entry) {
 		if ((strcmp(cmd->name, "lock") == 0) ||
 		    (strcmp(cmd->name, "term") == 0))
 			continue;
-		/* search_match_text() needs mi->text */
-		menuq_add(&menuq, cmd, "%s", cmd->name);
+		menuq_add(&menuq, cmd, NULL);
 	}
 
-	if ((mi = menu_filter(sc, &menuq,
-	    (m) ? NULL : "application", NULL,
-	    ((m) ? CWM_MENU_LIST : 0),
-	    search_match_text, search_print_cmd)) != NULL) {
+	if ((mi = menu_filter(sc, &menuq, "application", NULL, mflags,
+	    search_match_cmd, search_print_cmd)) != NULL) {
 		cmd = (struct cmd_ctx *)mi->ctx;
 		u_spawn(cmd->path);
 	}
@@ -485,21 +526,50 @@ kbfunc_menu_group(void *ctx, struct cargs *cargs)
 	struct group_ctx	*gc;
 	struct menu		*mi;
 	struct menu_q		 menuq;
-	int			 m = (cargs->xev == CWM_XEV_BTN);
+	int			 mflags = 0;
+
+	if (cargs->xev == CWM_XEV_BTN)
+		mflags |= CWM_MENU_LIST;
 
 	TAILQ_INIT(&menuq);
 	TAILQ_FOREACH(gc, &sc->groupq, entry) {
 		if (group_holds_only_sticky(gc))
 			continue;
-		menuq_add(&menuq, gc, "%d %s", gc->num, gc->name);
+		menuq_add(&menuq, gc, NULL);
 	}
 
-	if ((mi = menu_filter(sc, &menuq,
-	    (m) ? NULL : "group", NULL, (CWM_MENU_LIST),
-	    search_match_text, search_print_group)) != NULL) {
+	if ((mi = menu_filter(sc, &menuq, "group", NULL, mflags,
+	    search_match_group, search_print_group)) != NULL) {
 		gc = (struct group_ctx *)mi->ctx;
 		(group_holds_only_hidden(gc)) ?
 		    group_show(gc) : group_hide(gc);
+	}
+
+	menuq_clear(&menuq);
+}
+
+void
+kbfunc_menu_wm(void *ctx, struct cargs *cargs)
+{
+	struct screen_ctx	*sc = ctx;
+	struct cmd_ctx		*wm;
+	struct menu		*mi;
+	struct menu_q		 menuq;
+	int			 mflags = 0;
+
+	if (cargs->xev == CWM_XEV_BTN)
+		mflags |= CWM_MENU_LIST;
+
+	TAILQ_INIT(&menuq);
+	TAILQ_FOREACH(wm, &Conf.wmq, entry)
+		menuq_add(&menuq, wm, NULL);
+
+	if ((mi = menu_filter(sc, &menuq, "wm", NULL, mflags,
+	    search_match_wm, search_print_wm)) != NULL) {
+		wm = (struct cmd_ctx *)mi->ctx;
+		free(Conf.wm_argv);
+		Conf.wm_argv = xstrdup(wm->path);
+		cwm_status = CWM_EXEC_WM;
 	}
 
 	menuq_clear(&menuq);
@@ -513,24 +583,12 @@ kbfunc_menu_exec(void *ctx, struct cargs *cargs)
 	char			**ap, *paths[NPATHS], *path, *pathcpy;
 	char			 tpath[PATH_MAX];
 	struct stat		 sb;
-	const char		*label;
 	DIR			*dirp;
 	struct dirent		*dp;
 	struct menu		*mi;
 	struct menu_q		 menuq;
-	int			 l, i, cmd = cargs->flag;
-
-	switch (cmd) {
-	case CWM_MENU_EXEC_EXEC:
-		label = "exec";
-		break;
-	case CWM_MENU_EXEC_WM:
-		label = "wm";
-		break;
-	default:
-		errx(1, "%s: invalid cmd %d", __func__, cmd);
-		/* NOTREACHED */
-	}
+	int			 l, i;
+	int			 mflags = (CWM_MENU_DUMMY | CWM_MENU_FILE);
 
 	TAILQ_INIT(&menuq);
 
@@ -570,24 +628,11 @@ kbfunc_menu_exec(void *ctx, struct cargs *cargs)
 	}
 	free(path);
 
-	if ((mi = menu_filter(sc, &menuq, label, NULL,
-	    (CWM_MENU_DUMMY | CWM_MENU_FILE),
+	if ((mi = menu_filter(sc, &menuq, "exec", NULL, mflags,
 	    search_match_exec, search_print_text)) != NULL) {
 		if (mi->text[0] == '\0')
 			goto out;
-		switch (cmd) {
-		case CWM_MENU_EXEC_EXEC:
-			u_spawn(mi->text);
-			break;
-		case CWM_MENU_EXEC_WM:
-			cwm_status = CWM_EXEC_WM;
-			free(Conf.wm_argv);
-			Conf.wm_argv = xstrdup(mi->text);
-			break;
-		default:
-			errx(1, "%s: egad, cmd changed value!", __func__);
-			/* NOTREACHED */
-		}
+		u_spawn(mi->text);
 	}
 out:
 	if (mi != NULL && mi->dummy)
@@ -609,6 +654,7 @@ kbfunc_menu_ssh(void *ctx, struct cargs *cargs)
 	int			 l;
 	size_t			 len;
 	ssize_t			 slen;
+	int			 mflags = (CWM_MENU_DUMMY);
 
 	TAILQ_FOREACH(cmd, &Conf.cmdq, entry) {
 		if (strcmp(cmd->name, "term") == 0)
@@ -631,9 +677,8 @@ kbfunc_menu_ssh(void *ctx, struct cargs *cargs)
 		/* skip hashed hosts */
 		if (strncmp(buf, HASH_MARKER, strlen(HASH_MARKER)) == 0)
 			continue;
-		for (p = buf; *p != ',' && *p != ' ' && p != buf + slen; p++) {
-			/* do nothing */
-		}
+		for (p = buf; *p != ',' && *p != ' ' && p != buf + slen; p++)
+			;
 		/* ignore badness */
 		if (p - buf + 1 > sizeof(hostbuf))
 			continue;
@@ -645,7 +690,7 @@ kbfunc_menu_ssh(void *ctx, struct cargs *cargs)
 		err(1, "%s", path);
 	(void)fclose(fp);
 menu:
-	if ((mi = menu_filter(sc, &menuq, "ssh", NULL, (CWM_MENU_DUMMY),
+	if ((mi = menu_filter(sc, &menuq, "ssh", NULL, mflags,
 	    search_match_text, search_print_text)) != NULL) {
 		if (mi->text[0] == '\0')
 			goto out;
@@ -667,11 +712,12 @@ kbfunc_client_menu_label(void *ctx, struct cargs *cargs)
 	struct client_ctx	*cc = ctx;
 	struct menu		*mi;
 	struct menu_q		 menuq;
+	int			 mflags = (CWM_MENU_DUMMY);
 
 	TAILQ_INIT(&menuq);
 
 	/* dummy is set, so this will always return */
-	mi = menu_filter(cc->sc, &menuq, "label", cc->label, (CWM_MENU_DUMMY),
+	mi = menu_filter(cc->sc, &menuq, "label", cc->label, mflags,
 	    search_match_text, search_print_text);
 
 	if (!mi->abort) {
