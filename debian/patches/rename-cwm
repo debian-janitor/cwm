@@ -38,9 +38,9 @@ Rename cwm and cwmrc.1 to start with 'openbsd-' to avoid conflict.
  .\" For a program:  program [-abc] file ...
 -.Nm cwm
 +.Nm openbsd-cwm
+ .Op Fl v
  .Op Fl c Ar file
  .Op Fl d Ar display
- .Sh DESCRIPTION
 --- a/cwmrc.5
 +++ b/cwmrc.5
 @@ -22,7 +22,7 @@
@@ -52,16 +52,17 @@ Rename cwm and cwmrc.1 to start with 'openbsd-' to avoid conflict.
  configuration file.
  .Pp
  The current line can be extended over multiple lines using a backslash
-@@ -232,17 +232,17 @@
+@@ -225,7 +225,7 @@
  Toggle sticky group mode.
  The default behavior for new windows is to not assign any group.
  By enabling sticky group mode,
 -.Xr cwm 1
 +.Xr openbsd-cwm 1
  will assign new windows to the currently selected group.
- .El
- .Sh BIND COMMAND LIST
- .Bl -tag -width 18n -compact
+ .Pp
+ .It Ic unbind\-key Ar key
+@@ -256,10 +256,10 @@
+ .Bl -tag -width 23n -compact
  .It restart
  Restart the running
 -.Xr cwm 1 .
@@ -73,8 +74,17 @@ Rename cwm and cwmrc.1 to start with 'openbsd-' to avoid conflict.
  .It terminal
  Spawn a new terminal.
  .It lock
-@@ -489,7 +489,7 @@
- mousebind M\-3	window_resize
+@@ -457,7 +457,7 @@
+ .Bl -tag -width "~/.cwmrcXXX" -compact
+ .It Pa ~/.cwmrc
+ Default
+-.Xr cwm 1
++.Xr openbsd-cwm 1
+ configuration file.
+ .El
+ .Sh EXAMPLES
+@@ -503,7 +503,7 @@
+ bind-mouse M-3		window-resize
  .Ed
  .Sh SEE ALSO
 -.Xr cwm 1
