@@ -1,3 +1,11 @@
+cwm (6.2-1) unstable; urgency=low
+
+  * Imported upstream 6.2 sources
+  * Updated Debian patches to track 6.2 changes
+  * Updated standards version to 3.9.8
+
+ -- James McDonald <james@jamesmcdonald.com>  Mon, 14 May 2018 11:57:06 +0200
+
 cwm (5.6-4) unstable; urgency=low
 
   * Migrated to unstable
