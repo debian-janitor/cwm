@@ -45,7 +45,7 @@ static struct file {
 	int			 lineno;
 	int			 errors;
 } *file, *topfile;
-struct file	*pushfile(const char *, FILE *);
+struct file	*pushfile(const char *);
 int		 popfile(void);
 int		 yyparse(void);
 int		 yylex(void);
@@ -72,7 +72,7 @@ typedef struct {
 
 %token	BINDKEY UNBINDKEY BINDMOUSE UNBINDMOUSE
 %token	FONTNAME STICKY GAP
-%token	AUTOGROUP COMMAND IGNORE WM
+%token	AUTOGROUP COMMAND IGNORE
 %token	YES NO BORDERWIDTH MOVEAMOUNT
 %token	COLOR SNAPDIST
 %token	ACTIVEBORDER INACTIVEBORDER URGENCYBORDER
@@ -139,24 +139,12 @@ main		: FONTNAME STRING		{
 			conf->snapdist = $2;
 		}
 		| COMMAND STRING string		{
-			if (strlen($3) >= PATH_MAX) {
-				yyerror("%s command path too long", $2);
+			if (!conf_cmd_add(conf, $2, $3)) {
+				yyerror("command name/path too long");
 				free($2);
 				free($3);
 				YYERROR;
 			}
-			conf_cmd_add(conf, $2, $3);
-			free($2);
-			free($3);
-		}
-		| WM STRING string	{
-			if (strlen($3) >= PATH_MAX) {
-				yyerror("%s wm path too long", $2);
-				free($2);
-				free($3);
-				YYERROR;
-			}
-			conf_wm_add(conf, $2, $3);
 			free($2);
 			free($3);
 		}
@@ -331,7 +319,6 @@ lookup(char *s)
 		{ "unbind-mouse",	UNBINDMOUSE},
 		{ "ungroupborder",	UNGROUPBORDER},
 		{ "urgencyborder",	URGENCYBORDER},
-		{ "wm",			WM},
 		{ "yes",		YES}
 	};
 	const struct keywords	*p;
@@ -559,13 +546,19 @@ nodigits:
 }
 
 struct file *
-pushfile(const char *name, FILE *stream)
+pushfile(const char *name)
 {
 	struct file	*nfile;
 
 	nfile = xcalloc(1, sizeof(struct file));
 	nfile->name = xstrdup(name);
-	nfile->stream = stream;
+
+	if ((nfile->stream = fopen(nfile->name, "r")) == NULL) {
+		warn("%s", nfile->name);
+		free(nfile->name);
+		free(nfile);
+		return (NULL);
+	}
 	nfile->lineno = 1;
 	TAILQ_INSERT_TAIL(&files, nfile, entry);
 	return (nfile);
@@ -590,19 +583,13 @@ popfile(void)
 int
 parse_config(const char *filename, struct conf *xconf)
 {
-	FILE		*stream;
 	int		 errors = 0;
 
 	conf = xconf;
 
-	stream = fopen(filename, "r");
-	if (stream == NULL) {
-		if (errno == ENOENT)
-			return (0);
-		warn("%s", filename);
+	if ((file = pushfile(filename)) == NULL) {
 		return (-1);
 	}
-	file = pushfile(filename, stream);
 	topfile = file;
 
 	yyparse();

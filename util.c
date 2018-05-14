@@ -31,15 +31,13 @@
 
 #include "calmwm.h"
 
-static void	 log_msg(const char *, va_list);
-
 void
 u_spawn(char *argstr)
 {
 	switch (fork()) {
 	case 0:
 		u_exec(argstr);
-		exit(1);
+		break;
 	case -1:
 		warn("fork");
 	default:
@@ -80,7 +78,7 @@ u_exec(char *argstr)
 
 	(void)setsid();
 	(void)execvp(args[0], args);
-	warn("%s", s);
+	err(1, "%s", s);
 }
 
 char *
@@ -105,34 +103,4 @@ u_argv(char * const *argv)
 		strlcat(p, argv[i], siz);
 	}
 	return(p);
-}
-
-static void
-log_msg(const char *msg, va_list ap)
-{
-	char	*fmt;
-
-	if (asprintf(&fmt, "%s\n", msg) == -1) {
-		vfprintf(stderr, msg, ap);
-		fprintf(stderr, "\n");
-	} else {
-		vfprintf(stderr, fmt, ap);
-		free(fmt);
-	}
-	fflush(stderr);
-}
-
-void
-log_debug(int level, const char *func, const char *msg, ...)
-{
-	char	*fmt;
-	va_list	 ap;
-
-	if (Conf.debug < level)
-		return;
-
-	va_start(ap, msg);
-	xasprintf(&fmt, "debug%d: %s: %s", level, func, msg);
-	log_msg(fmt, ap);
-	va_end(ap);
 }

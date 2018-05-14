@@ -31,16 +31,13 @@
 
 #include "calmwm.h"
 
-static struct geom screen_apply_gap(struct screen_ctx *, struct geom);
-
 void
 screen_init(int which)
 {
 	struct screen_ctx	*sc;
 	Window			*wins, w0, w1, active = None;
 	XSetWindowAttributes	 rootattr;
-	unsigned int		 nwins, w;
-	int			 i;
+	unsigned int		 nwins, i;
 
 	sc = xmalloc(sizeof(*sc));
 
@@ -50,8 +47,6 @@ screen_init(int which)
 
 	sc->which = which;
 	sc->rootwin = RootWindow(X_Dpy, sc->which);
-	sc->colormap = DefaultColormap(X_Dpy, sc->which);
-	sc->visual = DefaultVisual(X_Dpy, sc->which);
 	sc->cycling = 0;
 	sc->hideall = 0;
 
@@ -82,8 +77,8 @@ screen_init(int which)
 
 	/* Deal with existing clients. */
 	if (XQueryTree(X_Dpy, sc->rootwin, &w0, &w1, &wins, &nwins)) {
-		for (w = 0; w < nwins; w++)
-			(void)client_init(wins[w], sc, (active == wins[w]));
+		for (i = 0; i < nwins; i++)
+			(void)client_init(wins[i], sc, (active == wins[i]));
 
 		XFree(wins);
 	}
@@ -148,12 +143,12 @@ struct geom
 screen_area(struct screen_ctx *sc, int x, int y, enum apply_gap apply_gap)
 {
 	struct region_ctx	*rc;
-	struct geom		 area = sc->view;
+	struct geom		 area = sc->work;
 
 	TAILQ_FOREACH(rc, &sc->regionq, entry) {
-		if ((x >= rc->view.x) && (x < (rc->view.x + rc->view.w)) &&
-		    (y >= rc->view.y) && (y < (rc->view.y + rc->view.h))) {
-			area = rc->view;
+		if ((x >= rc->area.x) && (x < (rc->area.x + rc->area.w)) &&
+		    (y >= rc->area.y) && (y < (rc->area.y + rc->area.h))) {
+			area = rc->area;
 			break;
 		}
 	}
@@ -195,6 +190,10 @@ screen_update_geometry(struct screen_ctx *sc)
 
 			rc = xmalloc(sizeof(*rc));
 			rc->num = i;
+			rc->area.x = ci->x;
+			rc->area.y = ci->y;
+			rc->area.w = ci->width;
+			rc->area.h = ci->height;
 			rc->view.x = ci->x;
 			rc->view.y = ci->y;
 			rc->view.w = ci->width;
@@ -220,7 +219,7 @@ screen_update_geometry(struct screen_ctx *sc)
 	xu_ewmh_net_workarea(sc);
 }
 
-static struct geom
+struct geom
 screen_apply_gap(struct screen_ctx *sc, struct geom geom)
 {
 	geom.x += sc->gap.left;
