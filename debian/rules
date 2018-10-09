@@ -2,7 +2,7 @@
 # -*- makefile -*-
 
 %:
-	dh $@ 
+	dh $@
 
 override_dh_auto_build:
 	sed -ne '/^\[0\]/d' -e '/^ChangeLog:/,$$p' README > changelog
