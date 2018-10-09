@@ -28,16 +28,16 @@ Rename cwm and cwmrc.1 to start with 'openbsd-' to avoid conflict.
  .\"
  .Dd $Mdocdate$
 -.Dt CWM 1
-+.Dt OPENBSD-CWM 1
++.Dt OPENBSD\-CWM 1
  .Os
  .Sh NAME
 -.Nm cwm
-+.Nm openbsd-cwm
++.Nm openbsd\-cwm
  .Nd a lightweight and efficient window manager for X11
  .Sh SYNOPSIS
  .\" For a program:  program [-abc] file ...
 -.Nm cwm
-+.Nm openbsd-cwm
++.Nm openbsd\-cwm
  .Op Fl v
  .Op Fl c Ar file
  .Op Fl d Ar display
@@ -48,7 +48,7 @@ Rename cwm and cwmrc.1 to start with 'openbsd-' to avoid conflict.
  .Sh DESCRIPTION
  This manual page describes the
 -.Xr cwm 1
-+.Xr openbsd-cwm 1
++.Xr openbsd\-cwm 1
  configuration file.
  .Pp
  The current line can be extended over multiple lines using a backslash
@@ -57,20 +57,20 @@ Rename cwm and cwmrc.1 to start with 'openbsd-' to avoid conflict.
  The default behavior for new windows is to not assign any group.
  By enabling sticky group mode,
 -.Xr cwm 1
-+.Xr openbsd-cwm 1
++.Xr openbsd\-cwm 1
  will assign new windows to the currently selected group.
  .Pp
- .It Ic unbind\-key Ar key
+ .It Ic unbind-key Ar key
 @@ -256,10 +256,10 @@
  .Bl -tag -width 23n -compact
  .It restart
  Restart the running
 -.Xr cwm 1 .
-+.Xr openbsd-cwm 1 .
++.Xr openbsd\-cwm 1 .
  .It quit
  Quit
 -.Xr cwm 1 .
-+.Xr openbsd-cwm 1 .
++.Xr openbsd\-cwm 1 .
  .It terminal
  Spawn a new terminal.
  .It lock
@@ -79,7 +79,7 @@ Rename cwm and cwmrc.1 to start with 'openbsd-' to avoid conflict.
  .It Pa ~/.cwmrc
  Default
 -.Xr cwm 1
-+.Xr openbsd-cwm 1
++.Xr openbsd\-cwm 1
  configuration file.
  .El
  .Sh EXAMPLES
@@ -88,7 +88,7 @@ Rename cwm and cwmrc.1 to start with 'openbsd-' to avoid conflict.
  .Ed
  .Sh SEE ALSO
 -.Xr cwm 1
-+.Xr openbsd-cwm 1
++.Xr openbsd\-cwm 1
  .Sh HISTORY
  The
  .Nm

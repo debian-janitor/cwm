@@ -52,7 +52,7 @@ Add backslash-escaping to bare - used as minus in man page.
  .Pp
  .It Ic sticky Ic yes Ns \&| Ns Ic no
 @@ -228,7 +228,7 @@
- .Xr cwm 1
+ .Xr openbsd\-cwm 1
  will assign new windows to the currently selected group.
  .Pp
 -.It Ic unbind-key Ar key
@@ -391,7 +391,7 @@ Add backslash-escaping to bare - used as minus in man page.
 +bind\-mouse M\-3		window\-resize
  .Ed
  .Sh SEE ALSO
- .Xr cwm 1
+ .Xr openbsd\-cwm 1
 --- a/cwm.1
 +++ b/cwm.1
 @@ -78,114 +78,114 @@
