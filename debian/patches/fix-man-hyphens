@@ -1,6 +1,15 @@
 Add backslash-escaping to bare - used as minus in man page.
 --- a/cwmrc.5
 +++ b/cwmrc.5
+@@ -30,7 +30,7 @@
+ Comments can be put anywhere in the file using a hash mark
+ .Pq Sq # ,
+ and extend to the end of the current line.
+-Care should be taken when commenting out multi-line text:
++Care should be taken when commenting out multi\-line text:
+ the comment is effective until the end of the entire block.
+ .Pp
+ Arguments containing whitespace should be surrounded by double quotes
 @@ -63,13 +63,13 @@
  are both set in the WM_CLASS property and may be obtained using
  .Xr xprop 1 .
@@ -17,7 +26,14 @@ Add backslash-escaping to bare - used as minus in man page.
  then a keysym name, taken from
  .Pa /usr/X11R6/include/X11/keysymdef.h .
  .Pp
-@@ -98,7 +98,7 @@
+@@ -92,13 +92,13 @@
+ .Sx BIND FUNCTION LIST
+ (see below) or the command line that is to be executed.
+ .Pp
+-.It Ic bind-mouse Ar button function
++.It Ic bind\-mouse Ar button function
+ Bind or rebind button
+ .Ar button
  to
  .Ar function .
  The modifier keys come first, followed by a
@@ -26,6 +42,15 @@ Add backslash-escaping to bare - used as minus in man page.
  then the button number.
  .Pp
  The following modifiers are recognised:
+@@ -218,7 +218,7 @@
+ The default is 1.
+ .Pp
+ .It Ic snapdist Ar pixels
+-Minimum distance to snap-to adjacent edge, in pixels.
++Minimum distance to snap\-to adjacent edge, in pixels.
+ The default is 0.
+ .Pp
+ .It Ic sticky Ic yes Ns \&| Ns Ic no
 @@ -228,7 +228,7 @@
  .Xr cwm 1
  will assign new windows to the currently selected group.
@@ -35,6 +60,280 @@ Add backslash-escaping to bare - used as minus in man page.
  Unbind function bound to
  .Ar key .
  A special
+@@ -237,7 +237,7 @@
+ .Dq all
+ can be used to unbind all keys.
+ .Pp
+-.It Ic unbind-mouse Ar button
++.It Ic unbind\-mouse Ar button
+ Unbind function bound to
+ .Ar button .
+ A special
+@@ -264,191 +264,191 @@
+ Spawn a new terminal.
+ .It lock
+ Lock the screen.
+-.It menu-window
++.It menu\-window
+ Launch window search menu.
+-.It menu-window-hidden
++.It menu\-window\-hidden
+ Launch hidden window search menu.
+-.It menu-cmd
++.It menu\-cmd
+ Launch application search menu.
+-.It menu-group
++.It menu\-group
+ Launch group search menu.
+-.It menu-exec
++.It menu\-exec
+ Launch
+ .Dq exec program
+ menu.
+-.It menu-exec-wm
++.It menu\-exec\-wm
+ Launch
+ .Dq exec WindowManager
+ menu.
+-.It menu-ssh
++.It menu\-ssh
+ Launch
+ .Dq ssh
+ menu.
+-.It group-toggle-[n]
+-Toggle visibility of group n, where n is 1-9.
+-.It group-only-[n]
+-Show only group n, where n is 1-9, hiding other groups.
+-.It group-toggle-all
++.It group\-toggle\-[n]
++Toggle visibility of group n, where n is 1\-9.
++.It group\-only\-[n]
++Show only group n, where n is 1\-9, hiding other groups.
++.It group\-toggle\-all
+ Toggle visibility of all groups.
+-.It window-group
++.It window\-group
+ Toggle group membership of current window.
+-.It window-movetogroup-[n]
+-Hide current window from display and move to group n, where n is 1-9.
+-.It group-cycle
++.It window\-movetogroup\-[n]
++Hide current window from display and move to group n, where n is 1\-9.
++.It group\-cycle
+ Forward cycle through groups.
+-.It group-rcycle
++.It group\-rcycle
+ Reverse cycle through groups.
+-.It window-cycle
++.It window\-cycle
+ Forward cycle through windows.
+-.It window-rcycle
++.It window\-rcycle
+ Reverse cycle through windows.
+-.It window-cycle-ingroup
++.It window\-cycle\-ingroup
+ Forward cycle through windows in current group.
+-.It window-rcycle-ingroup
++.It window\-rcycle\-ingroup
+ Reverse cycle through windows in current group.
+-.It window-delete
++.It window\-delete
+ Delete current window.
+-.It window-hide
++.It window\-hide
+ Hide current window.
+-.It window-lower
++.It window\-lower
+ Lower current window.
+-.It window-raise
++.It window\-raise
+ Raise current window.
+-.It window-menu-label
++.It window\-menu\-label
+ Label current window.
+-.It window-freeze
++.It window\-freeze
+ Freeze current window geometry.
+-.It window-stick
++.It window\-stick
+ Stick current window to all groups (same as assigning to nogroup).
+-.It window-fullscreen
+-Full-screen current window (gap + border removed).
+-.It window-maximize
++.It window\-fullscreen
++Full\-screen current window (gap + border removed).
++.It window\-maximize
+ Maximize current window (gap + border honored).
+-.It window-vmaximize
++.It window\-vmaximize
+ Vertically maximize current window (gap + border honored).
+-.It window-hmaximize
++.It window\-hmaximize
+ Horizontally maximize current window (gap + border honored).
+-.It window-htile
++.It window\-htile
+ Current window is placed at the top of the screen, maximized
+ horizontally and resized to half of the vertical screen space.
+ Other windows in its group share remaining screen space.
+-.It window-vtile
++.It window\-vtile
+ Current window is placed on the left of the screen, maximized vertically
+ and resized to half of the horizontal screen space.
+ Other windows in its group share remaining screen space.
+-.It window-move
++.It window\-move
+ Move current window.
+-.It window-resize
++.It window\-resize
+ Resize current window.
+-.It window-move-up
++.It window\-move\-up
+ Move window
+ .Ar moveamount
+ pixels up.
+-.It window-move-down
++.It window\-move\-down
+ Move window
+ .Ar moveamount
+ pixels down.
+-.It window-move-right
++.It window\-move\-right
+ Move window
+ .Ar moveamount
+ pixels right.
+-.It window-move-left
++.It window\-move\-left
+ Move window
+ .Ar moveamount
+ pixels left.
+-.It window-move-up-big
++.It window\-move\-up\-big
+ Move window 10 times
+ .Ar moveamount
+ pixels up.
+-.It window-move-down-big
++.It window\-move\-down\-big
+ Move window 10 times
+ .Ar moveamount
+ pixels down.
+-.It window-move-right-big
++.It window\-move\-right\-big
+ Move window 10 times
+ .Ar moveamount
+ pixels right.
+-.It window-move-left-big
++.It window\-move\-left\-big
+ Move window 10 times
+ .Ar moveamount
+ pixels left.
+-.It window-resize-up
++.It window\-resize\-up
+ Resize window
+ .Ar moveamount
+ pixels up.
+-.It window-resize-down
++.It window\-resize\-down
+ Resize window
+ .Ar moveamount
+ pixels down.
+-.It window-resize-right
++.It window\-resize\-right
+ Resize window
+ .Ar moveamount
+ pixels right.
+-.It window-resize-left
++.It window\-resize\-left
+ Resize window
+ .Ar moveamount
+ pixels left.
+-.It window-resize-up-big
++.It window\-resize\-up\-big
+ Resize window 10 times
+ .Ar moveamount
+ pixels up.
+-.It window-resize-down-big
++.It window\-resize\-down\-big
+ Resize window 10 times
+ .Ar moveamount
+ pixels down.
+-.It window-resize-right-big
++.It window\-resize\-right\-big
+ Resize window 10 times
+ .Ar moveamount
+ pixels right.
+-.It window-resize-left-big
++.It window\-resize\-left\-big
+ Resize window 10 times
+ .Ar moveamount
+ pixels left.
+-.It window-snap-up
++.It window\-snap\-up
+ Snap window to top edge.
+-.It window-snap-down
++.It window\-snap\-down
+ Snap window to bottom edge.
+-.It window-snap-right
++.It window\-snap\-right
+ Snap window to right edge.
+-.It window-snap-left
++.It window\-snap\-left
+ Snap window to left edge.
+-.It window-snap-up-right
+-Snap window to top-right corner.
+-.It window-snap-up-left
+-Snap window to top-left corner.
+-.It window-snap-down-right
+-Snap window to bottom-right corner.
+-.It window-snap-down-left
+-Snap window to bottom-left corner.
+-.It pointer-move-up
++.It window\-snap\-up\-right
++Snap window to top\-right corner.
++.It window\-snap\-up\-left
++Snap window to top\-left corner.
++.It window\-snap\-down\-right
++Snap window to bottom\-right corner.
++.It window\-snap\-down\-left
++Snap window to bottom\-left corner.
++.It pointer\-move\-up
+ Move pointer
+ .Ar moveamount
+ pixels up.
+-.It pointer-move-down
++.It pointer\-move\-down
+ Move pointer
+ .Ar moveamount
+ pixels down.
+-.It pointer-move-right
++.It pointer\-move\-right
+ Move pointer
+ .Ar moveamount
+ pixels right.
+-.It pointer-move-left
++.It pointer\-move\-left
+ Move pointer
+ .Ar moveamount
+ pixels left.
+-.It pointer-move-up-big
++.It pointer\-move\-up\-big
+ Move pointer 10 times
+ .Ar moveamount
+ pixels up.
+-.It pointer-move-down-big
++.It pointer\-move\-down\-big
+ Move pointer 10 times
+ .Ar moveamount
+ pixels down.
+-.It pointer-move-right-big
++.It pointer\-move\-right\-big
+ Move pointer 10 times
+ .Ar moveamount
+ pixels right.
+-.It pointer-move-left-big
++.It pointer\-move\-left\-big
+ Move pointer 10 times
+ .Ar moveamount
+ pixels left.
 @@ -463,15 +463,15 @@
  .Sh EXAMPLES
  .Bd -literal
@@ -54,7 +353,7 @@ Add backslash-escaping to bare - used as minus in man page.
  
  # Autogroup definitions
  autogroup 3 "aterm,XTerm"
-@@ -484,19 +484,19 @@
+@@ -484,23 +484,23 @@
  ignore xclock
  
  # Key bindings
@@ -86,4 +385,183 @@ Add backslash-escaping to bare - used as minus in man page.
 +unbind\-key CMS\-equal
  
  # Mouse bindings
- bind-mouse M-2		window-lower
+-bind-mouse M-2		window-lower
+-bind-mouse M-3		window-resize
++bind\-mouse M\-2		window\-lower
++bind\-mouse M\-3		window\-resize
+ .Ed
+ .Sh SEE ALSO
+ .Xr cwm 1
+--- a/cwm.1
++++ b/cwm.1
+@@ -78,114 +78,114 @@
+ .Pp
+ The default key bindings are:
+ .Pp
+-.Bl -tag -width "CM-EscapeXXXXX" -offset indent -compact
+-.It Ic CM-Return
++.Bl -tag -width "CM\-EscapeXXXXX" -offset indent -compact
++.It Ic CM\-Return
+ Spawn a new terminal.
+-.It Ic CM-Delete
++.It Ic CM\-Delete
+ Lock the screen.
+-.It Ic M-Return
++.It Ic M\-Return
+ Hide current window.
+-.It Ic M-Down
++.It Ic M\-Down
+ Lower current window.
+-.It Ic M-Up
++.It Ic M\-Up
+ Raise current window.
+-.It Ic M-slash
++.It Ic M\-slash
+ Search for windows.
+-.It Ic C-slash
++.It Ic C\-slash
+ Search for applications.
+-.It Ic CM-n
++.It Ic CM\-n
+ Label current window.
+-.It Ic M-Tab
++.It Ic M\-Tab
+ Cycle through currently visible windows.
+-.It Ic MS-Tab
++.It Ic MS\-Tab
+ Reverse cycle through currently visible windows.
+-.It Ic CM-x
++.It Ic CM\-x
+ Delete current window.
+-.It Ic CM-[n]
+-Toggle visibility of group n, where n is 1-9.
+-.It Ic CM-a
++.It Ic CM\-[n]
++Toggle visibility of group n, where n is 1\-9.
++.It Ic CM\-a
+ Toggle visibility of all groups.
+-.It Ic CM-g
++.It Ic CM\-g
+ Toggle group membership of current window.
+-.It Ic M-Right
++.It Ic M\-Right
+ Cycle through active groups.
+-.It Ic M-Left
++.It Ic M\-Left
+ Reverse cycle through active groups.
+-.It Ic CMS-f
++.It Ic CMS\-f
+ Toggle freezing geometry of current window.
+-.It Ic CM-s
++.It Ic CM\-s
+ Toggle stickiness of current window.
+-.It Ic CM-f
+-Toggle full-screen mode of current window.
+-.It Ic CM-m
++.It Ic CM\-f
++Toggle full\-screen mode of current window.
++.It Ic CM\-m
+ Toggle maximization of current window.
+-.It Ic CM-equal
++.It Ic CM\-equal
+ Toggle vertical maximization of current window.
+-.It Ic CMS-equal
++.It Ic CMS\-equal
+ Toggle horizontal maximization of current window.
+-.It Ic M-[hjkl]
++.It Ic M\-[hjkl]
+ Move window by a small amount.
+-.It Ic MS-[hjkl]
++.It Ic MS\-[hjkl]
+ Move window by a large amount; see
+ .Xr cwmrc 5 .
+-.It Ic CM-[hjkl]
++.It Ic CM\-[hjkl]
+ Resize window by a small amount.
+-.It Ic CMS-[hjkl]
++.It Ic CMS\-[hjkl]
+ Resize window by a large amount; see
+ .Xr cwmrc 5 .
+-.It Ic M-question
++.It Ic M\-question
+ Spawn
+ .Dq exec program
+ dialog.
+-.It Ic M-period
++.It Ic M\-period
+ Spawn
+ .Dq ssh to
+ dialog.
+ This parses
+ .Pa $HOME/.ssh/known_hosts
+-to provide host auto-completion.
++to provide host auto\-completion.
+ .Xr ssh 1
+ will be executed via the configured terminal emulator.
+-.It Ic CM-w
++.It Ic CM\-w
+ Spawn
+ .Dq exec WindowManager
+ menu, allowing a switch to another window manager.
+-.It Ic CMS-r
++.It Ic CMS\-r
+ Restart.
+-.It Ic CMS-q
++.It Ic CMS\-q
+ Quit.
+ .El
+ .Pp
+ The default mouse bindings are:
+ .Pp
+-.Bl -tag -width "CM-EscapeXXXXX" -offset indent -compact
+-.It Ic M-M1
++.Bl -tag -width "CM\-EscapeXXXXX" -offset indent -compact
++.It Ic M\-M1
+ Move current window.
+-.It Ic CM-M1
++.It Ic CM\-M1
+ Toggle group membership of current window.
+-.It Ic M-M2
++.It Ic M\-M2
+ Resize current window
+-.It Ic M-M3
++.It Ic M\-M3
+ Lower current window.
+-.It Ic CMS-M3
++.It Ic CMS\-M3
+ Hide current window.
+ .El
+ .Pp
+ The following key bindings may be used to navigate
+ search and exec dialogs:
+ .Pp
+-.Bl -tag -width "[Down] or C-s or M-j" -offset indent -compact
++.Bl -tag -width "[Down] or C\-s or M\-j" -offset indent -compact
+ .It Ic [Return]
+ Select item.
+-.It Ic [Down], C-s No or Ic M-j
++.It Ic [Down], C\-s No or Ic M\-j
+ Next item.
+-.It Ic [Up], C-r No or Ic M-k
++.It Ic [Up], C\-r No or Ic M\-k
+ Previous item.
+-.It Ic [Backspace] No or Ic C-h
++.It Ic [Backspace] No or Ic C\-h
+ Backspace.
+-.It Ic C-u
++.It Ic C\-u
+ Clear input.
+-.It Ic C-a
++.It Ic C\-a
+ List all available items.
+ .It Ic [Esc]
+ Cancel.
+@@ -264,7 +264,7 @@
+ .Nm
+ was originally inspired by evilwm, but was rewritten from scratch
+ due to limitations in the evilwm codebase.
+-The from-scratch rewrite borrowed some code from 9wm, however that code
++The from\-scratch rewrite borrowed some code from 9wm, however that code
+ has since been removed or rewritten.
+ .Pp
+ .Nm
