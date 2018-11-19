@@ -9,4 +9,9 @@ to 'xscreensaver-command -lock'. In order for this to work, you will have to
 start xscreensaver, for example in your .xsession file. You can change this
 setting in your configuration - see cwmrc(5).
 
+The format of the .cwmrc file has changed since 6.0. If you have an existing
+.cwmrc file from a previous version of cwm, you can convert it to the current
+format using the tool migrate-config.pl. It is installed with this
+documentation, in the examples directory.
+
  -- James McDonald <james@jamesmcdonald.com>
