@@ -1,7 +1,8 @@
 cwm (6.3-1) unstable; urgency=low
 
-  * Imported upstream 6.3 sources
+  * Imported upstream 6.3 sources (Closes: #913992)
   * Updated Debian patches to track 6.3 changes
+  * Updated standards version to 4.2.1
 
  -- James McDonald <james@jamesmcdonald.com>  Tue, 09 Oct 2018 13:15:22 +0200
 
