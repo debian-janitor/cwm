@@ -3,13 +3,13 @@ Section: x11
 Priority: optional
 Maintainer: James McDonald <james@jamesmcdonald.com>
 Build-Depends: bison,
-               debhelper (>= 11),
+               debhelper-compat (= 12),
                libx11-dev,
                libxft-dev,
                libxinerama-dev,
                libxrandr-dev,
                pkg-config
-Standards-Version: 4.2.1
+Standards-Version: 4.4.1
 Homepage: https://github.com/chneukirchen/cwm
 
 Package: cwm
