@@ -24,6 +24,7 @@
 #include <err.h>
 #include <errno.h>
 #include <limits.h>
+#include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -134,5 +135,6 @@ log_debug(int level, const char *func, const char *msg, ...)
 	va_start(ap, msg);
 	xasprintf(&fmt, "debug%d: %s: %s", level, func, msg);
 	log_msg(fmt, ap);
+	free(fmt);
 	va_end(ap);
 }
