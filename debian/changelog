@@ -1,3 +1,10 @@
+cwm (6.6-1) unstable; urgency=medium
+
+  * Import upstream 6.6 sources
+  * Update Debian patches to track 6.6 changes
+
+ -- James McDonald <james@jamesmcdonald.com>  Fri, 07 Feb 2020 08:19:43 +0100
+
 cwm (6.3-2) unstable; urgency=low
 
   * Update standards version to 4.4.1
