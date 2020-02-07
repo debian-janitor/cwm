@@ -69,7 +69,7 @@ Add backslash-escaping to bare - used as minus in man page.
  Unbind function bound to
  .Ar button .
  A special
-@@ -264,191 +264,191 @@
+@@ -264,193 +264,193 @@
  Spawn a new terminal.
  .It lock
  Lock the screen.
@@ -104,11 +104,15 @@ Add backslash-escaping to bare - used as minus in man page.
 -Toggle visibility of group n, where n is 1-9.
 -.It group-only-[n]
 -Show only group n, where n is 1-9, hiding other groups.
+-.It group-close-[n]
+-Close all windows in group n, where n is 1-9.
 -.It group-toggle-all
-+.It group\-toggle\-[n]
++.It group\-toggl\e-[n]
 +Toggle visibility of group n, where n is 1\-9.
 +.It group\-only\-[n]
 +Show only group n, where n is 1\-9, hiding other groups.
++.It group\-close\-[n]
++Close all windows in group n, where n is 1\-9.
 +.It group\-toggle\-all
  Toggle visibility of all groups.
 -.It window-group
@@ -136,9 +140,9 @@ Add backslash-escaping to bare - used as minus in man page.
 -.It window-rcycle-ingroup
 +.It window\-rcycle\-ingroup
  Reverse cycle through windows in current group.
--.It window-delete
-+.It window\-delete
- Delete current window.
+-.It window-close
++.It window\-close
+ Close current window.
 -.It window-hide
 +.It window\-hide
  Hide current window.
@@ -158,10 +162,9 @@ Add backslash-escaping to bare - used as minus in man page.
 +.It window\-stick
  Stick current window to all groups (same as assigning to nogroup).
 -.It window-fullscreen
--Full-screen current window (gap + border removed).
--.It window-maximize
 +.It window\-fullscreen
-+Full\-screen current window (gap + border removed).
+ Full-screen current window (gap + border removed).
+-.It window-maximize
 +.It window\-maximize
  Maximize current window (gap + border honored).
 -.It window-vmaximize
@@ -334,7 +337,7 @@ Add backslash-escaping to bare - used as minus in man page.
  Move pointer 10 times
  .Ar moveamount
  pixels left.
-@@ -463,15 +463,15 @@
+@@ -465,15 +465,15 @@
  .Sh EXAMPLES
  .Bd -literal
  # Set default Xft(3) font
@@ -353,7 +356,7 @@ Add backslash-escaping to bare - used as minus in man page.
  
  # Autogroup definitions
  autogroup 3 "aterm,XTerm"
-@@ -484,23 +484,23 @@
+@@ -486,23 +486,23 @@
  ignore xclock
  
  # Key bindings
@@ -394,169 +397,7 @@ Add backslash-escaping to bare - used as minus in man page.
  .Xr openbsd\-cwm 1
 --- a/cwm.1
 +++ b/cwm.1
-@@ -78,114 +78,114 @@
- .Pp
- The default key bindings are:
- .Pp
--.Bl -tag -width "CM-EscapeXXXXX" -offset indent -compact
--.It Ic CM-Return
-+.Bl -tag -width "CM\-EscapeXXXXX" -offset indent -compact
-+.It Ic CM\-Return
- Spawn a new terminal.
--.It Ic CM-Delete
-+.It Ic CM\-Delete
- Lock the screen.
--.It Ic M-Return
-+.It Ic M\-Return
- Hide current window.
--.It Ic M-Down
-+.It Ic M\-Down
- Lower current window.
--.It Ic M-Up
-+.It Ic M\-Up
- Raise current window.
--.It Ic M-slash
-+.It Ic M\-slash
- Search for windows.
--.It Ic C-slash
-+.It Ic C\-slash
- Search for applications.
--.It Ic CM-n
-+.It Ic CM\-n
- Label current window.
--.It Ic M-Tab
-+.It Ic M\-Tab
- Cycle through currently visible windows.
--.It Ic MS-Tab
-+.It Ic MS\-Tab
- Reverse cycle through currently visible windows.
--.It Ic CM-x
-+.It Ic CM\-x
- Delete current window.
--.It Ic CM-[n]
--Toggle visibility of group n, where n is 1-9.
--.It Ic CM-a
-+.It Ic CM\-[n]
-+Toggle visibility of group n, where n is 1\-9.
-+.It Ic CM\-a
- Toggle visibility of all groups.
--.It Ic CM-g
-+.It Ic CM\-g
- Toggle group membership of current window.
--.It Ic M-Right
-+.It Ic M\-Right
- Cycle through active groups.
--.It Ic M-Left
-+.It Ic M\-Left
- Reverse cycle through active groups.
--.It Ic CMS-f
-+.It Ic CMS\-f
- Toggle freezing geometry of current window.
--.It Ic CM-s
-+.It Ic CM\-s
- Toggle stickiness of current window.
--.It Ic CM-f
--Toggle full-screen mode of current window.
--.It Ic CM-m
-+.It Ic CM\-f
-+Toggle full\-screen mode of current window.
-+.It Ic CM\-m
- Toggle maximization of current window.
--.It Ic CM-equal
-+.It Ic CM\-equal
- Toggle vertical maximization of current window.
--.It Ic CMS-equal
-+.It Ic CMS\-equal
- Toggle horizontal maximization of current window.
--.It Ic M-[hjkl]
-+.It Ic M\-[hjkl]
- Move window by a small amount.
--.It Ic MS-[hjkl]
-+.It Ic MS\-[hjkl]
- Move window by a large amount; see
- .Xr cwmrc 5 .
--.It Ic CM-[hjkl]
-+.It Ic CM\-[hjkl]
- Resize window by a small amount.
--.It Ic CMS-[hjkl]
-+.It Ic CMS\-[hjkl]
- Resize window by a large amount; see
- .Xr cwmrc 5 .
--.It Ic M-question
-+.It Ic M\-question
- Spawn
- .Dq exec program
- dialog.
--.It Ic M-period
-+.It Ic M\-period
- Spawn
- .Dq ssh to
- dialog.
- This parses
- .Pa $HOME/.ssh/known_hosts
--to provide host auto-completion.
-+to provide host auto\-completion.
- .Xr ssh 1
- will be executed via the configured terminal emulator.
--.It Ic CM-w
-+.It Ic CM\-w
- Spawn
- .Dq exec WindowManager
- menu, allowing a switch to another window manager.
--.It Ic CMS-r
-+.It Ic CMS\-r
- Restart.
--.It Ic CMS-q
-+.It Ic CMS\-q
- Quit.
- .El
- .Pp
- The default mouse bindings are:
- .Pp
--.Bl -tag -width "CM-EscapeXXXXX" -offset indent -compact
--.It Ic M-M1
-+.Bl -tag -width "CM\-EscapeXXXXX" -offset indent -compact
-+.It Ic M\-M1
- Move current window.
--.It Ic CM-M1
-+.It Ic CM\-M1
- Toggle group membership of current window.
--.It Ic M-M2
-+.It Ic M\-M2
- Resize current window
--.It Ic M-M3
-+.It Ic M\-M3
- Lower current window.
--.It Ic CMS-M3
-+.It Ic CMS\-M3
- Hide current window.
- .El
- .Pp
- The following key bindings may be used to navigate
- search and exec dialogs:
- .Pp
--.Bl -tag -width "[Down] or C-s or M-j" -offset indent -compact
-+.Bl -tag -width "[Down] or C\-s or M\-j" -offset indent -compact
- .It Ic [Return]
- Select item.
--.It Ic [Down], C-s No or Ic M-j
-+.It Ic [Down], C\-s No or Ic M\-j
- Next item.
--.It Ic [Up], C-r No or Ic M-k
-+.It Ic [Up], C\-r No or Ic M\-k
- Previous item.
--.It Ic [Backspace] No or Ic C-h
-+.It Ic [Backspace] No or Ic C\-h
- Backspace.
--.It Ic C-u
-+.It Ic C\-u
- Clear input.
--.It Ic C-a
-+.It Ic C\-a
- List all available items.
- .It Ic [Esc]
- Cancel.
-@@ -264,7 +264,7 @@
+@@ -271,7 +271,7 @@
  .Nm
  was originally inspired by evilwm, but was rewritten from scratch
  due to limitations in the evilwm codebase.
