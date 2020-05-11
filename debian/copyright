@@ -1,6 +1,7 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: cwm
-Source: http://chneukirchen.org/releases/
+Upstream-Contact: Leah Neukirchen <leah@vuxu.org>
+Source: https://leahneukirchen.org/releases/
 
 Files: *
 Copyright: Copyright 2004,2005 Marius Aamodt Eriksen <marius@monkey.org>

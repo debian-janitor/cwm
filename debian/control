@@ -10,7 +10,7 @@ Build-Depends: bison,
                libxrandr-dev,
                pkg-config
 Standards-Version: 4.4.1
-Homepage: https://github.com/chneukirchen/cwm
+Homepage: https://github.com/leahneukirchen/cwm
 
 Package: cwm
 Architecture: any
