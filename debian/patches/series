@@ -2,3 +2,4 @@ rename-cwm
 fix-man-hyphens
 support-external-cflags
 change-default-binaries
+support-pkg-config-override
