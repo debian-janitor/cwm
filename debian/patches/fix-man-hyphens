@@ -10,10 +10,10 @@ Add backslash-escaping to bare - used as minus in man page.
  the comment is effective until the end of the entire block.
  .Pp
  Arguments containing whitespace should be surrounded by double quotes
-@@ -63,13 +63,13 @@
+@@ -60,13 +60,13 @@
+ The name and class values, respectively, for existing windows
  are both set in the WM_CLASS property and may be obtained using
  .Xr xprop 1 .
- .Pp
 -.It Ic bind-key Ar key function
 +.It Ic bind\-key Ar key function
  Bind or rebind key
@@ -26,10 +26,10 @@ Add backslash-escaping to bare - used as minus in man page.
  then a keysym name, taken from
  .Pa /usr/X11R6/include/X11/keysymdef.h .
  .Pp
-@@ -92,13 +92,13 @@
+@@ -90,19 +90,19 @@
+ may either be one from the
  .Sx BIND FUNCTION LIST
  (see below) or the command line that is to be executed.
- .Pp
 -.It Ic bind-mouse Ar button function
 +.It Ic bind\-mouse Ar button function
  Bind or rebind button
@@ -41,35 +41,60 @@ Add backslash-escaping to bare - used as minus in man page.
 +.Sq \- ,
  then the button number.
  .Pp
- The following modifiers are recognised:
-@@ -218,7 +218,7 @@
- The default is 1.
+ The same modifiers are recognised as for
+ .Ar key
+ in
+-.Nm bind-key .
++.Nm bind\-key .
  .Pp
+ The following buttons are recognised:
+ .Pp
+@@ -186,7 +186,7 @@
+ .It Ic htile Ar percent
+ Set the percentage of screen the master window should occupy
+ after calling
+-.Ic window-htile .
++.Ic window\-htile .
+ If set to 0, the horizontal size of the master window will
+ remain unchanged.
+ The default is 50.
+@@ -199,7 +199,7 @@
+ in pixels.
+ The default is 1.
  .It Ic snapdist Ar pixels
 -Minimum distance to snap-to adjacent edge, in pixels.
 +Minimum distance to snap\-to adjacent edge, in pixels.
  The default is 0.
- .Pp
  .It Ic sticky Ic yes Ns \&| Ns Ic no
-@@ -228,7 +228,7 @@
+ Toggle sticky group mode.
+@@ -207,7 +207,7 @@
+ By enabling sticky group mode,
  .Xr openbsd\-cwm 1
  will assign new windows to the currently selected group.
- .Pp
 -.It Ic unbind-key Ar key
 +.It Ic unbind\-key Ar key
  Unbind function bound to
  .Ar key .
  A special
-@@ -237,7 +237,7 @@
+@@ -215,7 +215,7 @@
+ keyword
  .Dq all
  can be used to unbind all keys.
- .Pp
 -.It Ic unbind-mouse Ar button
 +.It Ic unbind\-mouse Ar button
  Unbind function bound to
  .Ar button .
  A special
-@@ -264,193 +264,193 @@
+@@ -226,7 +226,7 @@
+ .It Ic vtile Ar percent
+ Set the percentage of screen the master window should occupy
+ after calling
+-.Ic window-vtile .
++.Ic window\-vtile .
+ If set to 0, the vertical size of the master window will
+ remain unchanged.
+ The default is 50.
+@@ -249,197 +249,197 @@
  Spawn a new terminal.
  .It lock
  Lock the screen.
@@ -107,12 +132,12 @@ Add backslash-escaping to bare - used as minus in man page.
 -.It group-close-[n]
 -Close all windows in group n, where n is 1-9.
 -.It group-toggle-all
-+.It group\-toggl\e-[n]
-+Toggle visibility of group n, where n is 1\-9.
++.It group\-toggle\-[n]
++Toggle visibility of group n, where n is 1\(en9.
 +.It group\-only\-[n]
-+Show only group n, where n is 1\-9, hiding other groups.
++Show only group n, where n is 1\(en9, hiding other groups.
 +.It group\-close\-[n]
-+Close all windows in group n, where n is 1\-9.
++Close all windows in group n, where n is 1\(en9.
 +.It group\-toggle\-all
  Toggle visibility of all groups.
 -.It window-group
@@ -122,7 +147,7 @@ Add backslash-escaping to bare - used as minus in man page.
 -Hide current window from display and move to group n, where n is 1-9.
 -.It group-cycle
 +.It window\-movetogroup\-[n]
-+Hide current window from display and move to group n, where n is 1\-9.
++Hide current window from display and move to group n, where n is 1\(en9.
 +.It group\-cycle
  Forward cycle through groups.
 -.It group-rcycle
@@ -176,12 +201,16 @@ Add backslash-escaping to bare - used as minus in man page.
 -.It window-htile
 +.It window\-htile
  Current window is placed at the top of the screen, maximized
- horizontally and resized to half of the vertical screen space.
+ horizontally and resized to
+ .Ar htile
+ (default half) of the vertical screen space.
  Other windows in its group share remaining screen space.
 -.It window-vtile
 +.It window\-vtile
  Current window is placed on the left of the screen, maximized vertically
- and resized to half of the horizontal screen space.
+ and resized to
+ .Ar vtile
+ (default half) of the horizontal screen space.
  Other windows in its group share remaining screen space.
 -.It window-move
 +.It window\-move
@@ -282,22 +311,18 @@ Add backslash-escaping to bare - used as minus in man page.
 +.It window\-snap\-left
  Snap window to left edge.
 -.It window-snap-up-right
--Snap window to top-right corner.
--.It window-snap-up-left
--Snap window to top-left corner.
--.It window-snap-down-right
--Snap window to bottom-right corner.
--.It window-snap-down-left
--Snap window to bottom-left corner.
--.It pointer-move-up
 +.It window\-snap\-up\-right
-+Snap window to top\-right corner.
+ Snap window to top-right corner.
+-.It window-snap-up-left
 +.It window\-snap\-up\-left
-+Snap window to top\-left corner.
+ Snap window to top-left corner.
+-.It window-snap-down-right
 +.It window\-snap\-down\-right
-+Snap window to bottom\-right corner.
+ Snap window to bottom-right corner.
+-.It window-snap-down-left
 +.It window\-snap\-down\-left
-+Snap window to bottom\-left corner.
+ Snap window to bottom-left corner.
+-.It pointer-move-up
 +.It pointer\-move\-up
  Move pointer
  .Ar moveamount
@@ -337,7 +362,7 @@ Add backslash-escaping to bare - used as minus in man page.
  Move pointer 10 times
  .Ar moveamount
  pixels left.
-@@ -465,15 +465,15 @@
+@@ -454,15 +454,15 @@
  .Sh EXAMPLES
  .Bd -literal
  # Set default Xft(3) font
@@ -356,7 +381,7 @@ Add backslash-escaping to bare - used as minus in man page.
  
  # Autogroup definitions
  autogroup 3 "aterm,XTerm"
-@@ -486,23 +486,23 @@
+@@ -475,23 +475,23 @@
  ignore xclock
  
  # Key bindings
@@ -397,6 +422,163 @@ Add backslash-escaping to bare - used as minus in man page.
  .Xr openbsd\-cwm 1
 --- a/cwm.1
 +++ b/cwm.1
+@@ -82,65 +82,65 @@
+ The default key bindings are:
+ .Pp
+ .Bl -tag -width "CM-EscapeXXXXX" -offset indent -compact
+-.It Ic CM-Return
++.It Ic CM\-Return
+ Spawn a new terminal.
+-.It Ic CM-Delete
++.It Ic CM\-Delete
+ Lock the screen.
+-.It Ic M-Return
++.It Ic M\-Return
+ Hide current window.
+-.It Ic M-Down
++.It Ic M\-Down
+ Lower current window.
+-.It Ic M-Up
++.It Ic M\-Up
+ Raise current window.
+-.It Ic M-slash
++.It Ic M\-slash
+ Search for windows.
+-.It Ic C-slash
++.It Ic C\-slash
+ Search for applications.
+-.It Ic CM-n
++.It Ic CM\-n
+ Label current window.
+-.It Ic M-Tab
++.It Ic M\-Tab
+ Cycle through currently visible windows.
+-.It Ic MS-Tab
++.It Ic MS\-Tab
+ Reverse cycle through currently visible windows.
+-.It Ic CM-x
++.It Ic CM\-x
+ Close current window.
+-.It Ic CM-[n]
+-Toggle visibility of group n, where n is 1-9.
+-.It Ic CM-a
++.It Ic CM\-[n]
++Toggle visibility of group n, where n is 1\(en9.
++.It Ic CM\-a
+ Toggle visibility of all groups.
+-.It Ic CM-g
++.It Ic CM\-g
+ Toggle group membership of current window.
+-.It Ic M-Right
++.It Ic M\-Right
+ Cycle through active groups.
+-.It Ic M-Left
++.It Ic M\-Left
+ Reverse cycle through active groups.
+-.It Ic CMS-f
++.It Ic CMS\-f
+ Toggle freezing geometry of current window.
+-.It Ic CM-s
++.It Ic CM\-s
+ Toggle stickiness of current window.
+-.It Ic CM-f
++.It Ic CM\-f
+ Toggle full-screen mode of current window.
+-.It Ic CM-m
++.It Ic CM\-m
+ Toggle maximization of current window.
+-.It Ic CM-equal
++.It Ic CM\-equal
+ Toggle vertical maximization of current window.
+-.It Ic CMS-equal
++.It Ic CMS\-equal
+ Toggle horizontal maximization of current window.
+-.It Ic M-[hjkl]
++.It Ic M\-[hjkl]
+ Move window by a small amount.
+-.It Ic MS-[hjkl]
++.It Ic MS\-[hjkl]
+ Move window by a large amount; see
+ .Xr cwmrc 5 .
+-.It Ic CM-[hjkl]
++.It Ic CM\-[hjkl]
+ Resize window by a small amount.
+-.It Ic CMS-[hjkl]
++.It Ic CMS\-[hjkl]
+ Resize window by a large amount; see
+ .Xr cwmrc 5 .
+-.It Ic M-question
++.It Ic M\-question
+ Spawn
+ .Dq exec program
+ dialog.
+-.It Ic M-period
++.It Ic M\-period
+ Spawn
+ .Dq ssh to
+ dialog.
+@@ -149,46 +149,46 @@
+ to provide host auto-completion.
+ .Xr ssh 1
+ will be executed via the configured terminal emulator.
+-.It Ic CM-w
++.It Ic CM\-w
+ Spawn
+ .Dq exec WindowManager
+ menu, allowing a switch to another window manager.
+-.It Ic CMS-r
++.It Ic CMS\-r
+ Restart.
+-.It Ic CMS-q
++.It Ic CMS\-q
+ Quit.
+ .El
+ .Pp
+ The default mouse bindings are:
+ .Pp
+-.Bl -tag -width "CM-EscapeXXXXX" -offset indent -compact
+-.It Ic M-M1
++.Bl -tag -width "CM\-EscapeXXXXX" -offset indent -compact
++.It Ic M\-M1
+ Move current window.
+-.It Ic CM-M1
++.It Ic CM\-M1
+ Toggle group membership of current window.
+-.It Ic M-M2
++.It Ic M\-M2
+ Resize current window
+-.It Ic M-M3
++.It Ic M\-M3
+ Lower current window.
+-.It Ic CMS-M3
++.It Ic CMS\-M3
+ Hide current window.
+ .El
+ .Pp
+ The following key bindings may be used to navigate
+ search and exec dialogs:
+ .Pp
+-.Bl -tag -width "[Down] or C-s or M-j" -offset indent -compact
++.Bl -tag -width "[Down] or C\-s or M\-j" -offset indent -compact
+ .It Ic [Return]
+ Select item.
+-.It Ic [Down], C-s No or Ic M-j
++.It Ic [Down], C\-s No or Ic M\-j
+ Next item.
+-.It Ic [Up], C-r No or Ic M-k
++.It Ic [Up], C\-r No or Ic M\-k
+ Previous item.
+-.It Ic [Backspace] No or Ic C-h
++.It Ic [Backspace] No or Ic C\-h
+ Backspace.
+-.It Ic C-u
++.It Ic C\-u
+ Clear input.
+-.It Ic C-a
++.It Ic C\-a
+ List all available items.
+ .It Ic [Esc]
+ Cancel.
 @@ -271,7 +271,7 @@
  .Nm
  was originally inspired by evilwm, but was rewritten from scratch

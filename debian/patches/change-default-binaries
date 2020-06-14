@@ -1,7 +1,7 @@
 Change the default binaries to more closely fit Debian policy
 --- a/conf.c
 +++ b/conf.c
-@@ -300,8 +300,8 @@
+@@ -303,8 +303,8 @@
  	for (i = 0; i < nitems(color_binds); i++)
  		c->color[i] = xstrdup(color_binds[i]);
  

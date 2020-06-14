@@ -1,18 +1,12 @@
 cwm (6.7-1) unstable; urgency=medium
 
-  * Import upstream 6.7 sources
-
- -- James McDonald <james@jamesmcdonald.com>  Sun, 14 Jun 2020 13:45:55 +0200
-
-cwm (6.6-2) unstable; urgency=medium
-
-  * Allow override of pkg-config location to support cross-platform
-    builds (Closes: #960512)
+  * Import upstream 6.7 sources (Closes: #960512)
+  * Update Debian patches to track 6.7 changes
   * Add VCS fields to debian/control
   * Update standards version to 4.5.0
   * Update debhelper compat to 13
 
- -- James McDonald <james@jamesmcdonald.com>  Sun, 14 Jun 2020 12:28:19 +0200
+ -- James McDonald <james@jamesmcdonald.com>  Sun, 14 Jun 2020 13:45:55 +0200
 
 cwm (6.6-1) unstable; urgency=medium
 
