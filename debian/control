@@ -10,6 +10,8 @@ Build-Depends: bison,
                libxrandr-dev,
                pkg-config
 Standards-Version: 4.4.1
+Vcs-git: https://github.com/jamesmcdonald/cwm.git
+Vcs-Browser: https://github.com/jamesmcdonald/cwm
 Homepage: https://github.com/leahneukirchen/cwm
 
 Package: cwm
