@@ -1,3 +1,10 @@
+cwm (7.1-1) UNRELEASED; urgency=medium
+
+  *  Import upstream 7.1 sources
+  *  Update patches for 7.1
+
+ -- James McDonald <james@jamesmcdonald.com>  Mon, 18 Jul 2022 13:30:22 +0200
+
 cwm (6.6-2) unstable; urgency=medium
 
   * Allow override of pkg-config location to support cross-platform
