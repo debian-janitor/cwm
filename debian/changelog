@@ -1,7 +1,8 @@
-cwm (7.1-1) UNRELEASED; urgency=medium
+cwm (7.1-1) unstable; urgency=medium
 
-  *  Import upstream 7.1 sources
-  *  Update patches for 7.1
+  * Import upstream 7.1 sources
+  * Update packaging for 7.1
+  * Update standards version to 4.6.1.0
 
  -- James McDonald <james@jamesmcdonald.com>  Mon, 18 Jul 2022 13:30:22 +0200
 
