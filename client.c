@@ -336,6 +336,7 @@ client_toggle_fullscreen(struct client_ctx *cc)
 resize:
 	client_resize(cc, 0);
 	xu_ewmh_set_net_wm_state(cc);
+	client_ptr_inbound(cc, 1);
 }
 
 void
@@ -376,6 +377,7 @@ client_toggle_maximize(struct client_ctx *cc)
 resize:
 	client_resize(cc, 0);
 	xu_ewmh_set_net_wm_state(cc);
+	client_ptr_inbound(cc, 1);
 }
 
 void
@@ -408,6 +410,7 @@ client_toggle_vmaximize(struct client_ctx *cc)
 resize:
 	client_resize(cc, 0);
 	xu_ewmh_set_net_wm_state(cc);
+	client_ptr_inbound(cc, 1);
 }
 
 void
@@ -440,6 +443,7 @@ client_toggle_hmaximize(struct client_ctx *cc)
 resize:
 	client_resize(cc, 0);
 	xu_ewmh_set_net_wm_state(cc);
+	client_ptr_inbound(cc, 1);
 }
 
 void
@@ -633,7 +637,7 @@ void
 client_wm_hints(struct client_ctx *cc)
 {
 	XWMHints	*wmh;
- 
+
 	if ((wmh = XGetWMHints(X_Dpy, cc->win)) != NULL) {
 		if ((wmh->flags & InputHint) && (wmh->input))
 			cc->flags |= CLIENT_INPUT;
@@ -845,13 +849,15 @@ client_mwm_hints(struct client_ctx *cc)
 
 	if (xu_get_prop(cc->win, cwmh[_MOTIF_WM_HINTS],
 	    cwmh[_MOTIF_WM_HINTS], MWM_HINTS_ELEMENTS,
-	    (unsigned char **)&mwmh) == MWM_HINTS_ELEMENTS) {
-		if (mwmh->flags & MWM_FLAGS_DECORATIONS &&
-		    !(mwmh->decorations & MWM_DECOR_ALL) &&
-		    !(mwmh->decorations & MWM_DECOR_BORDER))
+	    (unsigned char **)&mwmh) <= 0)
+		return;
+
+	if ((mwmh->flags & MWM_HINTS_DECORATIONS) &&
+	    !(mwmh->decorations & MWM_DECOR_ALL)) {
+		if (!(mwmh->decorations & MWM_DECOR_BORDER))
 			cc->bwidth = 0;
-		XFree(mwmh);
 	}
+	XFree(mwmh);
 }
 
 void
